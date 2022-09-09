@@ -49,8 +49,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	}
 
-	@Override
-	public void validarEmail(String email) {
+	public static boolean validarEmail(String email) {
 		
 		//Query methods
 		boolean existe = repository.existsByEmail(email);
@@ -59,7 +58,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 			throw new RegraNegocioException("Já existe um usuário cadastrado com este email.");
 		}
 
-	}
+        return existe;
+    }
 
 	@Override
 	public Optional<Usuario> obterPorId(Long id) {
